@@ -17,14 +17,19 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      # تثبيت الـ demo فقط
+      - name: Install dependencies for demo
         working-directory: demo
-        run: npm install
+        run: |
+          npm install
+          npm install gh-pages --save-dev
 
-      - name: Build project
+      # بناء المشروع
+      - name: Build demo
         working-directory: demo
         run: npm run build
 
+      # نشر إلى GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
